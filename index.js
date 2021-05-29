@@ -1,12 +1,26 @@
-
+// Imports
 const express = require('express')
+const dotenv = require("dotenv")
+
+// Express JS
 const app = express()
-const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// Routes
+const authRoute = require("./routes/auth")
 
-app.listen(port, () => {
+// Dotenv Activate
+dotenv.config()
+
+// Database Connection
+
+// Body Parser
+app.use(express.json())
+
+// const port = 3000
+
+app.use("/api/user", authRoute);
+
+
+app.listen(process.env.PORT || 8080, () => {
   console.log(`App is running on http://localhost:${port}`)
 })
