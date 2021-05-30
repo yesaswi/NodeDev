@@ -27,7 +27,7 @@ mongoose.connect(
 // Body Parser
 app.use(express.json())
 
-app.use("/api/hello", authRoute);
+app.use("/api/user", authRoute);
 
 
 app.listen(process.env.PORT || 8080, () => {

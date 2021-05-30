@@ -1,8 +1,8 @@
-const router = require("express").Router();
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { registerValidation, loginValidation } = require("../validation");
+const router = require("express").Router()
+const User = require("../models/User")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+const { registerValidation, loginValidation } = require("../validation")
 
 router.post("/register", async (req, res) => {
   //Validating the entered data
@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("Email does not exists");
   const validPass = await bcrypt.compare(req.body.password, user.password);
-  if (!validPass) return res.status(400).send("Password does not exists");
+  if (!validPass) return res.status(400).send("Incorrect Password");
 
   //Assigning a JWT
   const token = jwt.sign({ _id: user.id }, process.env.TOKEN_SECRET);
