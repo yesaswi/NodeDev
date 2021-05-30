@@ -10,7 +10,6 @@ dotenv.config()
 const app = express()
 
 // Routes
-
 const authRoute = require("./routes/auth")
 
 // Database Connection
@@ -27,9 +26,10 @@ mongoose.connect(
 // Body Parser
 app.use(express.json())
 
+// Routes
 app.use("/api/user", authRoute);
 
-
+// Start the Application
 app.listen(process.env.PORT || 8080, () => {
   console.log(`App is running on http://localhost:${process.env.PORT}`)
 })
